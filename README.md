@@ -87,37 +87,46 @@ Mini-projects focused on tuning and performance analysis.
 
 ## Repository Structure
 
+```
+
 gpu-programming-interactive-tutorials/
 │
 ├── lessons/
-│ ├── lesson01_execution_model/
-│ ├── lesson02_occupancy/
-│ ├── lesson03_memory_hierarchy/
-│ ├── lesson04_coalescing/
-│ ├── lesson05_shared_memory/
-│ ├── lesson06_divergence/
-│ ├── lesson07_tiling/
-│ ├── lesson08_compute_vs_memory_bound/
-│ ├── lesson09_launch_config/
-│ ├── lesson10_async_streams/
-│ ├── lesson11_profiling/
-│ └── lesson12_projects/
+│   ├── lesson01_execution_model/
+│   │   ├── kernel.cu
+│   │   ├── experiment.cpp
+│   │   └── README.md
+│   │
+│   ├── lesson02_occupancy/
+│   ├── lesson03_memory_hierarchy/
+│   ├── lesson04_coalescing/
+│   ├── lesson05_shared_memory/
+│   ├── lesson06_divergence/
+│   ├── lesson07_tiling/
+│   ├── lesson08_compute_vs_memory_bound/
+│   ├── lesson09_launch_config/
+│   ├── lesson10_async_streams/
+│   ├── lesson11_profiling/
+│   └── lesson12_projects/
 │
 ├── common/
-│ ├── utils.h
-│ ├── timing.h
-│ ├── plotting/
-│ └── data/
+│   ├── utils.h
+│   ├── timing.h
+│   ├── plotting/
+│   │   └── (Python or JS plotting helpers)
+│   └── data/
 │
 ├── python/
-│ ├── analyze_results.ipynb
-│ └── plot_results.py
+│   ├── analyze_results.ipynb
+│   └── plot_results.py
 │
 ├── results/
-│ ├── example_plots/
-│ └── csv/
+│   ├── example_plots/
+│   └── csv/
 │
 └── README.md
+
+```
 
 ## Requirements
 
