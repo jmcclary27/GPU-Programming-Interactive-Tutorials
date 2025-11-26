@@ -1,0 +1,29 @@
+# Core data analysis
+numpy
+pandas
+
+# Plotting/visualization
+matplotlib
+plotly
+seaborn
+
+# Jupyter environment
+jupyter
+notebook
+ipykernel
+
+# File handling
+tqdm
+pyyaml
+
+# Optional interactive widgets in notebooks
+ipywidgets
+
+# For saving figures / images
+pillow
+
+# If you want inline SVG plots or vector graphics
+svgwrite
+
+# For structured logging or experiment configs
+rich

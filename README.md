@@ -6,6 +6,10 @@ Instead of reading theory, you will **run kernels**, **measure performance**, **
 
 ---
 
+## **Hardware**
+You **do not need an AMD GPU**.
+These tutorials use AMD's HIP, however any supported GPU or just a CPU backend will still work.
+
 ## What You’ll Learn
 
 By completing the 12 interactive lessons in this repo, you will understand:
@@ -38,6 +42,12 @@ These topics reflect the fundamentals used by AMD, NVIDIA, and Intel GPU enginee
 
 ---
 
+## Requirements
+- Run the following command in the root of the repo to install the required packages: pip install -r requirements.txt
+- No GPU is necessary to run the experiments
+
+---
+
 ## Lessons Overview
 
 Each lesson includes:
@@ -50,39 +60,6 @@ Each lesson includes:
 ### **Lesson 1 — GPU Execution Model Basics**  
 Threads, blocks, grids, indexing (vector add).
 
-### **Lesson 2 — Latency Hiding & Occupancy**  
-Block size sweep, undersaturation vs optimal occupancy.
-
-### **Lesson 3 — Memory Hierarchy**  
-Global memory, caching, memory latency.
-
-### **Lesson 4 — Memory Coalescing**  
-Coalesced vs non-coalesced accesses.
-
-### **Lesson 5 — Shared Memory & Bank Conflicts**  
-Why shared memory is fast, how conflicts occur.
-
-### **Lesson 6 — Divergence & Branching**  
-Random vs coherent branching and its effect on throughput.
-
-### **Lesson 7 — Tiling & Data Reuse**  
-Shared-memory tiled matrix multiply.
-
-### **Lesson 8 — Compute-Bound vs Memory-Bound Workloads**  
-Arithmetic intensity and roofline intuition.
-
-### **Lesson 9 — Kernel Launch Configuration Tuning**  
-Block/grid size sweeps and occupancy tradeoffs.
-
-### **Lesson 10 — Asynchronous Operations & Streams**  
-Copy/compute overlap with HIP streams.
-
-### **Lesson 11 — Profiling with HIP Events**  
-Consistent timing and metric collection.
-
-### **Lesson 12 — Putting It All Together**  
-Mini-projects focused on tuning and performance analysis.
-
 ---
 
 ## Repository Structure
@@ -92,22 +69,10 @@ Mini-projects focused on tuning and performance analysis.
 gpu-programming-interactive-tutorials/
 │
 ├── lessons/
-│   ├── lesson01_execution_model/
-│   │   ├── kernel.cu
-│   │   ├── experiment.cpp
-│   │   └── README.md
-│   │
-│   ├── lesson02_occupancy/
-│   ├── lesson03_memory_hierarchy/
-│   ├── lesson04_coalescing/
-│   ├── lesson05_shared_memory/
-│   ├── lesson06_divergence/
-│   ├── lesson07_tiling/
-│   ├── lesson08_compute_vs_memory_bound/
-│   ├── lesson09_launch_config/
-│   ├── lesson10_async_streams/
-│   ├── lesson11_profiling/
-│   └── lesson12_projects/
+│   └── lesson01_execution_model/
+│       ├── kernel.cu
+│       ├── experiment.cpp
+│       └── README.md
 │
 ├── common/
 │   ├── utils.h
@@ -136,7 +101,3 @@ gpu-programming-interactive-tutorials/
 - Python 3.10+  
 - Pandas  
 - Matplotlib or Plotly for visualizations  
-
-### **Hardware**
-You **do not need an AMD GPU**.  
-All fundamental experiments run using HIP’s CPU backend or any supported GPU.
