@@ -1,4 +1,4 @@
-#include <hip/hip_runtime.h>
+#include <cuda_runtime.h>
 #include <stdio.h>
 
 extern "C" __global__

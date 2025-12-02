@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
-#include <hip/hip_runtime.h>
+#include <cuda_runtime.h>
 
 extern "C" __global__
 void vector_add(const float* a, const float* b, float* out, int n);
 
 int main() {
-    int n = 1 << 20; // 1 million elements
+    int n = 1 << 20;
     size_t bytes = n * sizeof(float);
 
     // Host vectors
@@ -16,13 +16,13 @@ int main() {
 
     // Device pointers
     float *d_a, *d_b, *d_out;
-    hipMalloc(&d_a, bytes);
-    hipMalloc(&d_b, bytes);
-    hipMalloc(&d_out, bytes);
+    cudaMalloc(&d_a, bytes);
+    cudaMalloc(&d_b, bytes);
+    cudaMalloc(&d_out, bytes);
 
     // Copy host → device
-    hipMemcpy(d_a, h_a.data(), bytes, hipMemcpyHostToDevice);
-    hipMemcpy(d_b, h_b.data(), bytes, hipMemcpyHostToDevice);
+    cudaMemcpy(d_a, h_a.data(), bytes, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_b, h_b.data(), bytes, cudaMemcpyHostToDevice);
 
     // Kernel launch configuration
     int blockSize = 256;
@@ -33,10 +33,10 @@ int main() {
     std::cout << "Block size: " << blockSize << std::endl;
 
     vector_add<<<gridSize, blockSize>>>(d_a, d_b, d_out, n);
-    hipDeviceSynchronize();
+    cudaDeviceSynchronize();
 
     // Copy back
-    hipMemcpy(h_out.data(), d_out, bytes, hipMemcpyDeviceToHost);
+    cudaMemcpy(h_out.data(), d_out, bytes, cudaMemcpyDeviceToHost);
 
     // Validate
     bool ok = true;
@@ -47,12 +47,13 @@ int main() {
         }
     }
 
-    std::cout << (ok ? "SUCCESS: output correct!" : "ERROR: output incorrect!") 
+    std::cout << (ok ? "SUCCESS: output correct!"
+                     : "ERROR: output incorrect!") 
               << std::endl;
 
-    hipFree(d_a);
-    hipFree(d_b);
-    hipFree(d_out);
+    cudaFree(d_a);
+    cudaFree(d_b);
+    cudaFree(d_out);
 
     return 0;
 }
