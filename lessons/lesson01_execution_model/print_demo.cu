@@ -1,3 +1,4 @@
+// print_demo.cu
 #include <cstdio>
 #include <cuda_runtime.h>
 

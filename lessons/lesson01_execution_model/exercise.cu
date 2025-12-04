@@ -9,9 +9,9 @@
 //   - Simple vector add: out[i] = a[i] + b[i]
 //
 // Instructions:
-//   1. Find the sections marked "TODO".
-//   2. Uncomment those lines and replace the "..." with real code.
-//   3. When you think you're done, compile and run:
+//   1. Find the lines marked with "TODO" in the comments.
+//   2. Replace the placeholder code on those lines with your own code.
+//   3. Compile and run:
 //
 //        nvcc lesson1_exercise.cu -o lesson1_exercise
 //        ./lesson1_exercise
@@ -24,31 +24,22 @@
 #include <cuda_runtime.h>
 #include <stdio.h>
 
-// TODO: implement this kernel using the concepts from Lesson 1
 extern "C" __global__
 void vector_add_exercise(const float* a,
                          const float* b,
                          float* out,
                          int n) {
-    // Step 1: compute a global index for this thread
-    //   Use blockIdx.x, blockDim.x, and threadIdx.x
-    //
-    // int idx = ...;  // TODO: uncomment and replace "..." with the correct expression
+    /* TODO: compute a global index for this thread using blockIdx.x, blockDim.x, and threadIdx.x
+    replace this placeholder with the correct global index expression */
+    int idx = 0;
 
-    // Step 2: check that idx is inside the bounds of the array
-    //   Only access a[idx], b[idx], out[idx] if idx < n
-    //
-    // if (idx < n) {
-    //     // Step 3: perform the vector addition
-    //     //   out[idx] = a[idx] + b[idx];
-    //     //
-    //     // out[idx] = ...;  // TODO: uncomment and complete this line
-    //
-    //     // (Optional, but recommended for learning)
-    //     // Print the mapping from (block, thread) to the global index.
-    //     // printf("block %d, thread %d --> global index %d\n",
-    //     //        blockIdx.x, threadIdx.x, idx);
-    // }
+    /* TODO: use a bounds check so threads with idx outside [0, n) do nothing
+    replace this condition so valid threads (within the array) run the body */
+    if (idx < 0) {
+        /* TODO: perform the vector addition using the correct index
+        replace this placeholder write with the correct expression */
+        out[0] = 0.0f;
+    }
 }
 
 int main() {
@@ -78,21 +69,20 @@ int main() {
     // Try changing this value later (e.g., 4, 8, 16) and see what happens.
     int blockSize = 8;
 
-    // TODO: compute how many blocks we need to cover n elements
-    //   Hint: use the "ceiling division" pattern you saw in the example:
-    //     gridSize = (n + blockSize - 1) / blockSize;
-    //
-    // int gridSize = ...;  // TODO: uncomment and replace "..." with the correct expression
+    /* TODO: compute how many blocks we need so that every element [0, n) is covered
+    replace this placeholder with a correct expression using n and blockSize */
+    int gridSize = 1;
 
     std::cout << "Exercise kernel launch" << std::endl;
     std::cout << "  n         = " << n         << " elements" << std::endl;
     std::cout << "  blockSize = " << blockSize << " threads per block" << std::endl;
-    // std::cout << "  gridSize  = " << gridSize  << " blocks" << std::endl;  // TODO: uncomment after you define gridSize
+    std::cout << "  gridSize  = " << gridSize  << " blocks" << std::endl;
 
-    // TODO: launch the kernel with your gridSize and blockSize
-    //   vector_add_exercise<<< /* gridSize */, /* blockSize */ >>>( /* arguments */ );
-    //
-    // vector_add_exercise<<< ..., ... >>>( ..., ..., ..., ... );  // TODO: uncomment and fill in
+    /* TODO: launch the kernel using your gridSize and blockSize and pass all four kernel arguments
+    replace the launch configuration and/or arguments as needed */
+    vector_add_exercise<<<1, 1>>>(d_a, d_b, d_out, n);
+
+    // ************************ DO NOT CHANGE ANYTHING BELOW THIS LINE ************************ //
 
     cudaDeviceSynchronize();
 
