@@ -71,7 +71,7 @@ int main() {
 
     /* TODO: compute how many blocks we need so that every element [0, n) is covered
     replace this placeholder with a correct expression using n and blockSize */
-    int gridSize = 4;
+    int gridSize = (n + blockSize - 1) / blockSize;
 
     std::cout << "Exercise kernel launch" << std::endl;
     std::cout << "  n         = " << n         << " elements" << std::endl;
@@ -88,6 +88,15 @@ int main() {
 
     // Copy result back to host
     cudaMemcpy(h_out.data(), d_out, bytes, cudaMemcpyDeviceToHost);
+
+    cudaMemcpy(h_out.data(), d_out, bytes, cudaMemcpyDeviceToHost);
+
+    // DEBUG: print all elements
+    std::cout << "h_out contents:\n";
+    for (int i = 0; i < n; i++) {
+        std::cout << h_out[i] << " ";
+    }
+    std::cout << "\n";
 
     // Check correctness: every element should be 3.0f
     bool ok = true;
