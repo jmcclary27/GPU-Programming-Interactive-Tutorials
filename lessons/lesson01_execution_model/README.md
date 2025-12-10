@@ -176,3 +176,23 @@ Move to **Lesson 1: The Exercise** and fill in the missing code.
 Once you get `"SUCCESS"`, you’re ready for Lesson 2.
 
 ---
+
+# Exercise Answers (Don't Read Before Attempting Exercise.cu)
+
+```cpp
+int idx = threadIdx.x + blockIdx.x * blockDim.x;
+
+
+
+if (idx < n) {
+    out[idx] = a[idx] + b[idx];
+}
+
+
+
+int gridSize = (n + blockSize - 1) / blockSize;
+
+
+
+vector_add_exercise<<<gridSize, blockSize>>>(d_a, d_b, d_out, n);
+```

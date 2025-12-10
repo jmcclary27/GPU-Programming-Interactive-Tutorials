@@ -31,14 +31,14 @@ void vector_add_exercise(const float* a,
                          int n) {
     /* TODO: compute a global index for this thread using blockIdx.x, blockDim.x, and threadIdx.x
     replace this placeholder with the correct global index expression */
-    int idx = threadIdx.x + blockIdx.x * blockDim.x;
+    int idx = 0;
 
     /* TODO: use a bounds check so threads with idx outside [0, n) do nothing
     replace this condition so valid threads (within the array) run the body */
-    if (idx < n) {
+    if (idx < 0) {
         /* TODO: perform the vector addition using the correct index
         replace this placeholder write with the correct expression */
-        out[idx] = a[idx] + b[idx];
+        out[0] = 0.0f;
     }
 }
 
@@ -71,7 +71,7 @@ int main() {
 
     /* TODO: compute how many blocks we need so that every element [0, n) is covered
     replace this placeholder with a correct expression using n and blockSize */
-    int gridSize = (n + blockSize - 1) / blockSize;
+    int gridSize = 1;
 
     std::cout << "Exercise kernel launch" << std::endl;
     std::cout << "  n         = " << n         << " elements" << std::endl;
@@ -80,7 +80,7 @@ int main() {
 
     /* TODO: launch the kernel using your gridSize and blockSize and pass all four kernel arguments
     replace the launch configuration and/or arguments as needed */
-    vector_add_exercise<<<gridSize, blockSize>>>(d_a, d_b, d_out, n);
+    vector_add_exercise<<<1, 1>>>(d_a, d_b, d_out, n);
 
     // ************************ DO NOT CHANGE ANYTHING BELOW THIS LINE ************************ //
 
