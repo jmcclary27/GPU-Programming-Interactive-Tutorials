@@ -71,7 +71,7 @@ int main() {
 
     /* TODO: compute how many blocks we need so that every element [0, n) is covered
     replace this placeholder with a correct expression using n and blockSize */
-    int gridSize = (n + blockSize - 1) / blockSize;
+    int gridSize = 4;
 
     std::cout << "Exercise kernel launch" << std::endl;
     std::cout << "  n         = " << n         << " elements" << std::endl;
