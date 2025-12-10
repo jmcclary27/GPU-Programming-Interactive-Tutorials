@@ -83,32 +83,11 @@ int main() {
     vector_add_exercise<<<gridSize, blockSize>>>(d_a, d_b, d_out, n);
 
     // ************************ DO NOT CHANGE ANYTHING BELOW THIS LINE ************************ //
-    // Check launch errors
-    cudaError_t err = cudaGetLastError();
-    if (err != cudaSuccess) {
-        std::cerr << "Kernel launch error: "
-                << cudaGetErrorString(err) << std::endl;
-    }
 
     cudaDeviceSynchronize();
 
-    // Check runtime errors
-    err = cudaGetLastError();
-    if (err != cudaSuccess) {
-        std::cerr << "Post-sync CUDA error: "
-                << cudaGetErrorString(err) << std::endl;
-    }
     // Copy result back to host
     cudaMemcpy(h_out.data(), d_out, bytes, cudaMemcpyDeviceToHost);
-
-    cudaMemcpy(h_out.data(), d_out, bytes, cudaMemcpyDeviceToHost);
-
-    // DEBUG: print all elements
-    std::cout << "h_out contents:\n";
-    for (int i = 0; i < n; i++) {
-        std::cout << h_out[i] << " ";
-    }
-    std::cout << "\n";
 
     // Check correctness: every element should be 3.0f
     bool ok = true;
