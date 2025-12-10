@@ -72,6 +72,12 @@ This helps you *see* the mapping between:
 - `threadIdx.x`
 - and the computed global index.
 
+## How To Compile
+
+(Might need to change compile command depending on device being used)
+nvcc print_demo.cu -o print_demo
+./print_demo
+
 ### **How this demo works**
 - You set `n`, `blockSize`, and `gridSize`.  
 - The kernel computes a global index.  
@@ -85,6 +91,12 @@ This file does **no math**—it simply visualizes the execution model.
 # 🧪 Demo: `experiment.cu` + `kernel.cu`
 
 These two files work together to show a **real**, fully functioning CUDA kernel.
+
+## How to compile
+
+(Might need to change compile command depending on device being used)
+nvcc experiment.cu kernel.cu -o experiment
+./experiment
 
 ### `kernel.cu`
 Defines the correct version of the vector-add kernel:
@@ -144,6 +156,7 @@ The program prints `"SUCCESS"` only if **every part of your implementation is co
 
 ### ▶️ How to run the exercise
 
+(Might need to change compile command depending on device being used)
 nvcc lesson1_exercise.cu -o lesson1_exercise
 ./lesson1_exercise
 
